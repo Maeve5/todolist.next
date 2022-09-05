@@ -1,14 +1,25 @@
-import { Calendar } from 'antd';
+import { Button } from 'antd';
+import { CalendarOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import React from 'react';
-import Canlendar from './api/canlendar';
+import Layout from '../components/Layout';
 
 function Home() {
 
     return (
-        <>
-            <div>calendar</div>
-            <Canlendar />
-        </>
+        <Layout>
+            <Button
+                size='large'
+                type='link'
+                icon={<CalendarOutlined />}
+                block
+            >Calendar</Button> 
+            <Button
+                size='large'
+                type='link'
+                icon={<UnorderedListOutlined />}
+                block
+            >Todolist</Button>
+        </Layout>
     );
 }
 
