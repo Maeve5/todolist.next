@@ -7,20 +7,26 @@ function Home() {
 
     return (
         <>
-            <Button
-                size='large'
-                type='link'
-                icon={<CalendarOutlined />}
-                href='/calendar'
-                block
-            >Calendar</Button>
-            <Button
-                size='large'
-                type='link'
-                icon={<UnorderedListOutlined />}
-                href='/todolist'
-                block
-            >Todolist</Button>
+            <div className='home'>
+                <Button
+                    size='large'
+                    type='link'
+                    icon={<CalendarOutlined />}
+                    href='/calendar'
+                    block
+                >Calendar</Button>
+                <Button
+                    size='large'
+                    type='link'
+                    icon={<UnorderedListOutlined />}
+                    href='/todolist'
+                    block
+                >Todolist</Button>
+            </div>
+
+            <style jsx>{`
+                .home {margin: 50% 0}
+            `}</style>
         </>
     );
 }

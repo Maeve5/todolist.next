@@ -1,11 +1,11 @@
 import React from 'react';
 import ContentWrap from '../components/ContentWrap';
-import ListCheck from '../components/todolist/ListCheck';
+import DateList from '../components/todolist/DateList';
 
 function Todolist() {
 	return (
 		<ContentWrap>
-			<ListCheck />
+			<DateList />
 		</ContentWrap>
 	)
 }

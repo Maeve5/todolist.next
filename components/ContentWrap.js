@@ -1,72 +1,65 @@
-import { Layout, Menu } from 'antd';
+import { Button, Layout, Menu } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
-import { CalendarOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { CalendarOutlined, UnorderedListOutlined, HomeOutlined } from '@ant-design/icons';
 import React from 'react';
-import Link from 'next/link';
+import Router from 'next/router';
 
 function ContentWrap({ children }) {
 
 	return (
-		<Layout>
-			<Header
-				style={{
-					paddingLeft: 24,
-					fontSize: 16
-				}}
-			>
-				<Link href='/'>
-					Home
-				</Link>
-			</Header>
-
+		<>
 			<Layout>
 				<Sider
-					// breakpoint="lg"
-					// collapsedWidth="0"
-					// onBreakpoint={(broken) => {
-					// 	console.log(broken);
-					// }}
-					// onCollapse={(collapsed, type) => {
-					// 	console.log(collapsed, type);
-					// }}
 					width={160}
+					style={{ paddingTop: 16 }}
 				>
-					<div className="logo" />
-					<Menu
-						theme="dark"
-						mode="inline"
-						defaultSelectedKeys={['2']}
-						items={[CalendarOutlined, UnorderedListOutlined].map(
-							(icon, index) => ({
-								key: String(index + 1),
-								icon: React.createElement(icon),
-								label: `nav ${index + 1}`,
-							}),
-						)}
-						// items={[
-						// 	{
-						// 		key: 'calendar',
-						// 		icon: CalendarOutlined,
-						// 		label: 'Calendar'
-						// 	},
-						// 	{
-						// 		key: 'todolist',
-						// 		icon: UnorderedListOutlined,
-						// 		label: 'Todolist'
-						// 	}
-						// ]}
-					/>
+					<div className='side-wrap'>
+						<Button
+							size='large'
+							type='link'
+							href='/'
+							icon={<HomeOutlined />}
+							style={{marginBottom: 10}}
+							block
+						>Home</Button>
+						<Menu
+							theme="dark"
+							defaultSelectedKeys={['1']}
+							mode="inline"
+							onClick={(e) => {
+								Router.push(`/${e.key}`)
+							} }
+							items={[
+								{
+									key: 'calendar',
+									icon: <CalendarOutlined />,
+									label: 'Calendar'
+								},
+								{
+									key: 'todolist',
+									icon: <UnorderedListOutlined />,
+									label: 'Todolist'
+								}
+							]}
+						/>
+					</div>
 				</Sider>
-				<Content>{children}</Content>
+
+				<Layout>
+					<Header>
+					</Header>
+					<Content>{children}</Content>
+					<Footer style={{ textAlign: 'center', fontSize: 10 }}>
+						© Maeve
+					</Footer>
+				</Layout>
+
 			</Layout>
 
-			<Footer
-				style={{
-					textAlign: 'center',
-					paddingLeft: 210
-				}}
-			>© Maeve</Footer>
-		</Layout>
+			<style jsx>{`
+				.side-wrap {width: fit-content}
+			`}</style>
+		</>
 	)
 }
 
