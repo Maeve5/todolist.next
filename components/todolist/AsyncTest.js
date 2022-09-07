@@ -17,8 +17,8 @@ function AsyncTest() {
 	const { loading, error, data, fetchDatas: list } = useAsync(apiRequest);
 	// useAsync에서 반환한 { ...state, fetchDatas }를 { loading, error, data, fetchDatas: list }로 받을 수 있다.
 	// fetchDatas를 list로 사용하겠다.
-	
-	const isCheck = async ({ target: {id, checked }}) => {
+
+	const isCheck = async ({ target: { id, checked } }) => {
 		const res = await API.patch('/todo/' + id, {
 			isCheck: checked ? 'Y' : 'N',
 		});
@@ -34,23 +34,23 @@ function AsyncTest() {
 		<>
 			<div>
 				{console.log(data)}
-			{data.map((row) => {
-                return (
-                    <div key={row.rowKey} className='listItem'>
-                        <input
-                            type='checkbox'
-                            id={row.rowKey}
-                            checked={row.isCheck === 'Y' ? true : false}
-                            onChange={isCheck} />
-                        <div style={{
-                            display: 'inline-block',
-                            color: row.isCheck === 'Y'
-                                ? 'gray'
-                                : 'black'
-                        }}>{row.text}</div>
-                    </div>
-                )
-            })}
+				{data.map((row) => {
+					return (
+						<div key={row.rowKey} className='listItem'>
+							<input
+								type='checkbox'
+								id={row.rowKey}
+								checked={row.isCheck === 'Y' ? true : false}
+								onChange={isCheck} />
+							<div style={{
+								display: 'inline-block',
+								color: row.isCheck === 'Y'
+									? 'gray'
+									: 'black'
+							}}>{row.text}</div>
+						</div>
+					)
+				})}
 			</div>
 		</>
 	);
