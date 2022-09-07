@@ -4,7 +4,7 @@ import useAsync from "../../hooks/useAsync";
 
 const apiRequest = async (data) => {
 	try {
-		const res = await API.patch('/todo');
+		const res = await API.get('/todo');
 		const response = res.data;
 		return response.data;
 	}
@@ -25,6 +25,7 @@ function AsyncTest() {
 
 		const result = await list();
 		console.log('apiRequest res >> ', data);
+		
 	}
 
 	if (loading) return <h1>loading...</h1>;

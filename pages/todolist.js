@@ -3,6 +3,7 @@ import ContentWrap from '../components/ContentWrap';
 import CheckList from '../components/todolist/CheckList';
 import DateList from '../components/todolist/DateList';
 import DoneList from '../components/todolist/DoneList';
+import AddList from '../components/todolist/AddList';
 import Test from '../components/todolist/test';
 import AsyncTest from '../components/todolist/AsyncTest';
 
@@ -12,8 +13,9 @@ function Todolist({ data, list }) {
 			<DateList />
 			<DoneList />
 			<CheckList list={list} />
-			<Test />
-			<AsyncTest />
+			<AddList />
+			{/* <Test /> */}
+			{/* <AsyncTest /> */}
 		</ContentWrap>
 	)
 }
@@ -29,7 +31,7 @@ export async function getServerSideProps() {
 			// console.log('data >> ',data);
 			return { props: { data, list }}
 		}
-		return { props: { data, list } };
+		return { props: { data, list }};
 	}
 	catch (error) {
 		console.log('err >> ',error);

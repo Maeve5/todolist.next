@@ -25,7 +25,7 @@ function Home() {
             </div>
 
             <style jsx>{`
-                .home {margin: 50% 0}
+                .home {min-height:100vh;}
             `}</style>
         </>
     );

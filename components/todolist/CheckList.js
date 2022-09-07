@@ -1,8 +1,6 @@
-import { Button, Checkbox, Tooltip, Input } from 'antd';
+import { Checkbox, Input } from 'antd';
 import React, { useState, useEffect } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
 import API from '../../modules/api';
-import AddList from './AddList';
 
 function CheckList({ list }) {
 	const [todolist, setTodolist] = useState(list);
@@ -36,17 +34,17 @@ function CheckList({ list }) {
 		}
 	}
 
-	const onChange = async ({ target: { id, value }}) => {
-		try {
-			const res = await API.patch('/todo/' + id, {
-				text: value
-			})
-			console.log(res)
-		}
-		catch (error) {
+	// const onChange = async ({ target: { id, value }}) => {
+	// 	try {
+	// 		const res = await API.patch('/todo/' + id, {
+	// 			text: value
+	// 		})
+	// 		console.log(res)
+	// 	}
+	// 	catch (error) {
 			
-		}
-	}
+	// 	}
+	// }
 
 	return (
 		<>
@@ -67,24 +65,16 @@ function CheckList({ list }) {
 										? 'gray'
 										: 'black'
 								}}
-							>{text}</Checkbox>
+							/>
+							<Input className='input-todo' placeholder="할 일을 입력하세요." size='small' maxLength={5} value={text}/>
 						</p>
 					);
 				})}
 			</div>
-
-			<Tooltip title='add'>
-				<Button
-					shape='circle'
-					icon={<PlusOutlined />}
-					size='middle'
-					onClick={() => <AddList />}
-				/>
-			</Tooltip>
-
 			<style jsx>{`
 				.list-wrap {margin: 20px}
 				.check-wrap 
+				.
 			`}</style>
 		</>
 	);
