@@ -1,41 +1,73 @@
-import { Button, Checkbox, Tooltip } from 'antd';
+import { Button, Checkbox, Tooltip, Input } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import API from '../../modules/api';
 import AddList from './AddList';
 
-function CheckList() {
-	const [todolist, setTodolist] = useState([]);
+function CheckList({ list }) {
+	const [todolist, setTodolist] = useState(list);
 
-	const getData = async () => {
+	// const getData = async () => {
+	// 	try {
+	// 		const response = await API.get('/todo');
+	// 		setTodolist(response.data.data);
+	// 	}
+	// 	catch (error) {
+	// 		console.log(error);
+	// 	}
+	// }
+
+	// useEffect(() => {
+	// 	getData();
+	// }, []);
+	// console.log('todolist >> ', todolist);
+
+	const beCheck = async ({ target: { id, checked }}) => {
 		try {
-			const response = await API.get('/todo');
-			setTodolist(response.data.data);
+			const res = await API.patch('/todo/' + id, {
+				isCheck: checked ? 'Y' : 'N',
+			});
+			if (res.status === 200) {
+				getData();
+			}
 		}
 		catch (error) {
 			console.log(error);
 		}
 	}
 
-	useEffect(() => {
-		getData();
-	}, []);
-
-	const isCheck = (e) => {
-		console.log(`checked = ${e.target.checked}`);
-	  };
+	const onChange = async ({ target: { id, value }}) => {
+		try {
+			const res = await API.patch('/todo/' + id, {
+				text: value
+			})
+			console.log(res)
+		}
+		catch (error) {
+			
+		}
+	}
 
 	return (
 		<>
 			<div className='list-wrap'>
 				{todolist.map((row) => {
+					const {rowKey, isCheck, text} = row;
 					return (
-						<p key={row.rowKey} className='check-wrap'>
+						<p key={rowKey} className='check-wrap'>
 							<Checkbox
-								rowKey={row.rowKey}
-								isCheck={row.isCheck}
-								onChange={isCheck}
-							>{row.text}</Checkbox>
+								id={rowKey}
+								checked={isCheck === 'Y' ? true : false}
+								onClick={beCheck}
+								style={{
+									textDecoration: isCheck === 'Y'
+										? 'line-through'
+										: 'none',
+									color: isCheck === 'Y'
+										? 'gray'
+										: 'black'
+								}}
+							>{text}</Checkbox>
 						</p>
 					);
 				})}

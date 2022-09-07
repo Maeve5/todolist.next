@@ -1,7 +1,6 @@
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import React from 'react';
-import DoneList from './DoneList';
 const dateFormat = 'YYYY/MM/DD';
 const today = new Date();
 
@@ -21,7 +20,6 @@ function DateList() {
 					format={dateFormat}
 				/>
 			</div>
-			<DoneList />
 		</>
 	)
 }
